@@ -4,11 +4,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Button, Container, CssBaseline } from '@mui/material';
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
-import Experience from './components/Experience';
 import Strengths from './components/Strengths';
 import Education from './components/Education';
 import DevToy from './components/DevToy';
-import Projects from './components/Projects';
+import Career from './components/Career';
+import MajorExperience from './components/MajorExperience';
 
 const theme = createTheme({
   palette: {
@@ -35,8 +35,8 @@ const App: React.FC = () => {
         <div ref={componentRef}>
           <Profile />
           <Introduction />
-          <Experience />
-          <Projects />
+          <Career />
+          <MajorExperience />
           <Strengths />
           <DevToy />
           <Education />
