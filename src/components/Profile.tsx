@@ -33,8 +33,8 @@ const Profile: React.FC = () => {
     <ProfileContainer>
       <Avatar
         alt="Profile"
-        src="your-photo-url.jpg"
-        sx={{ width: 100, height: 100, margin: 'auto' }}
+        src={`${process.env.PUBLIC_URL}/elky.png`}
+        sx={{ width: 150, height: 150, margin: 'auto' }}
       />
       <Typography variant="h5">
         개발을 즐기는 개발자, 개선을 좋아하는 개발자 <HighlightedName>김성훈</HighlightedName>입니다.
@@ -43,7 +43,7 @@ const Profile: React.FC = () => {
         <StyledLink href="mailto:elky84@gmail.com"><Email /> elky84@gmail.com</StyledLink>
       </Typography>
       <Typography variant="h6">
-        <StyledLink href="your-blog-url"><Language /> https://elky84.github.io</StyledLink>
+        <StyledLink href="https://elky84.github.io'"><Language /> https://elky84.github.io</StyledLink>
       </Typography>
       <Typography variant="h6">
         <StyledLink href="https://github.com/elky84"><GitHub /> github.com/elky84</StyledLink>
