@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import ReactToPrint from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Button, Container, CssBaseline } from '@mui/material';
 import Profile from './components/Profile';
@@ -28,6 +28,31 @@ const theme = createTheme({
 const App: React.FC = () => {
   const componentRef = useRef<HTMLDivElement>(null);
 
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: 'my-document',
+    onBeforeGetContent: () => {
+      const linkStyles = `
+        a {
+          color: blue;
+          text-decoration: underline;
+        }
+      `;
+      const styleElement = document.createElement('style');
+      styleElement.type = 'text/css';
+      styleElement.appendChild(document.createTextNode(linkStyles));
+      document.head.appendChild(styleElement);
+
+      return Promise.resolve();
+    },
+    onAfterPrint: () => {
+      const styleElement = document.querySelector('style');
+      if (styleElement) {
+        document.head.removeChild(styleElement);
+      }
+    }
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -41,14 +66,9 @@ const App: React.FC = () => {
           <DevToy />
           <Education />
         </div>
-        <ReactToPrint
-          trigger={() => (
-            <Button variant="contained" color="primary">
-              Print to PDF
-            </Button>
-          )}
-          content={() => componentRef.current}
-        />
+        <Button onClick={handlePrint} variant="contained" color="primary">
+          Print to PDF
+        </Button>
       </Container>
     </ThemeProvider>
   );

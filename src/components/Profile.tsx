@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Avatar, Typography, Link, Box } from '@mui/material';
-import { GitHub, Email, Language } from '@mui/icons-material';
+import { GitHub, Email, Language, Note, StickyNote2 } from '@mui/icons-material';
 
 const ProfileContainer = styled(Box)`
   text-align: center;
@@ -19,34 +19,43 @@ const HighlightedName = styled.span`
 
 const StyledLink = styled(Link)`
   color: #1976d2;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 5px;
   &:hover {
     color: #d32f2f;
   }
 `;
-
 const Profile: React.FC = () => {
   return (
     <ProfileContainer>
       <Avatar
         alt="Profile"
         src={`${process.env.PUBLIC_URL}/elky.png`}
-        sx={{ width: 150, height: 150, margin: 'auto' }}
+        sx={{ 
+          width: 150, 
+          height: 150, 
+          margin: 'auto', 
+          border: '2px solid gray'
+        }}
       />
       <Typography variant="h5">
         개발을 즐기는 개발자, 개선을 좋아하는 개발자 <HighlightedName>김성훈</HighlightedName>입니다.
       </Typography>
       <Typography variant="h6">
-        <StyledLink href="mailto:elky84@gmail.com"><Email /> elky84@gmail.com</StyledLink>
+        <Email /> 이메일: <StyledLink href="mailto:elky84@gmail.com">elky84@gmail.com</StyledLink>
       </Typography>
       <Typography variant="h6">
-        <StyledLink href="https://elky84.github.io'"><Language /> https://elky84.github.io</StyledLink>
+        <Note /> 이력서: <StyledLink href="https://elky84.github.io/resume">https://elky84.github.io/resume </StyledLink>
       </Typography>
       <Typography variant="h6">
-        <StyledLink href="https://github.com/elky84"><GitHub /> github.com/elky84</StyledLink>
+        <StickyNote2 /> 포트폴리오: <StyledLink href="https://elky84.github.io/portfolio">https://elky84.github.io/portfolio </StyledLink>
+      </Typography>
+      <Typography variant="h6">
+        <Language /> 블로그: <StyledLink href="https://elky84.github.io">https://elky84.github.io</StyledLink>
+      </Typography>
+      <Typography variant="h6">
+        <GitHub /> Github: <StyledLink href="https://github.com/elky84"> https://github.com/elky84</StyledLink>
       </Typography>
     </ProfileContainer>
   );
