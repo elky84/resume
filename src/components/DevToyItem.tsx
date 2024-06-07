@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Typography, Box, Link, Chip } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import GetAppIcon from '@mui/icons-material/GetApp';
 import nugetIcon from '../icon/nuget.png'
 
 const DevToyItemContainer = styled(Box)`
@@ -34,11 +35,12 @@ interface DevToyItemProps {
   description: string;
   githubUrl?: string;
   youtubeUrls?: { name: string; url: string }[];
+  downloadUrls?: { windows?: string, android?: string }[];
   techStack: string[];
-  nugetUrl?: string; // NuGet URL 추가
+  nugetUrl?: string;
 }
 
-const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, youtubeUrls, techStack, nugetUrl }) => {
+const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, youtubeUrls, downloadUrls, techStack, nugetUrl }) => {
   return (
     <DevToyItemContainer>
       <Typography variant="h5" gutterBottom>
@@ -65,8 +67,28 @@ const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, 
           {youtubeUrls.map((item, index) => (
             <IconLink key={index} href={item.url} target="_blank" rel="noopener noreferrer">
               <YouTubeIcon style={{ marginRight: '5px' }} />
-              {item.name}: {item.url}
+              {item.name}
             </IconLink>
+          ))}
+        </Box>
+      )}
+      {downloadUrls && downloadUrls.length > 0 && (
+        <Box mt={1}>
+          {downloadUrls.map((item, index) => (
+            <React.Fragment key={index}>
+              {item.windows && (
+                <IconLink href={item.windows} target="_blank" rel="noopener noreferrer">
+                  <GetAppIcon style={{ marginRight: '5px' }} />
+                  windows
+                </IconLink>
+              )}
+              {item.android && (
+                <IconLink href={item.android} target="_blank" rel="noopener noreferrer">
+                  <GetAppIcon style={{ marginRight: '5px' }} />
+                  android
+                </IconLink>
+              )}
+            </React.Fragment>
           ))}
         </Box>
       )}
