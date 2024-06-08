@@ -16,7 +16,8 @@ const devToysData = [
     ],
     techStack: ["C#", "Unity3D", "DotNetty", "MongoDB", ".NET 6"],
     downloadUrls: [{windows: "https://drive.google.com/file/d/14gzmzYJ13sKcmOlVEuwDe238V0AN18wu/view?usp=drive_link"}],
-    screenShots: ["/screenshots/gm_01.jpeg"]
+    screenShots: ["/screenshots/gm_01.jpeg", "/screenshots/gm_02.jpeg", "/screenshots/gm_03.jpeg", 
+      "/screenshots/gm_04.jpeg", "/screenshots/gm_05.jpeg", "/screenshots/gm_06.jpeg"]
   },
   {
     title: "light",
