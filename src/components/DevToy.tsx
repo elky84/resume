@@ -15,7 +15,8 @@ const devToysData = [
       { name: "변신 주문서, 몬스터 소환 주문서", url: "https://www.youtube.com/watch?v=BVraOJ3WA5s" }
     ],
     techStack: ["C#", "Unity3D", "DotNetty", "MongoDB", ".NET 6"],
-    downloadUrls: [{windows: "https://drive.google.com/file/d/14gzmzYJ13sKcmOlVEuwDe238V0AN18wu/view?usp=drive_link"}]
+    downloadUrls: [{windows: "https://drive.google.com/file/d/14gzmzYJ13sKcmOlVEuwDe238V0AN18wu/view?usp=drive_link"}],
+    screenShots: ["/screenshots/gm_01.jpeg"]
   },
   {
     title: "light",

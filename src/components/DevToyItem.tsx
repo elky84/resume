@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Typography, Box, Link, Chip } from '@mui/material';
+import { Typography, Box, Link, Chip, Modal } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import GetAppIcon from '@mui/icons-material/GetApp';
-import nugetIcon from '../icon/nuget.png'
+import nugetIcon from '../icon/nuget.png';
 
 const DevToyItemContainer = styled(Box)`
   margin-bottom: 20px;
@@ -30,17 +30,60 @@ const NuGetIcon = styled('img')`
   margin-right: 5px;
 `;
 
+const ScreenshotContainer = styled(Box)`
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const Screenshot = styled('img')`
+  height: 100px;
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const ModalImage = styled('img')`
+  width: 80%;
+  height: auto;
+  margin: auto;
+  display: block;
+`;
+
 interface DevToyItemProps {
   title: string;
   description: string;
   githubUrl?: string;
   youtubeUrls?: { name: string; url: string }[];
-  downloadUrls?: { windows?: string, android?: string }[];
+  downloadUrls?: { windows?: string; android?: string }[];
   techStack: string[];
   nugetUrl?: string;
+  screenShots?: string[];
 }
 
-const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, youtubeUrls, downloadUrls, techStack, nugetUrl }) => {
+const DevToyItem: React.FC<DevToyItemProps> = ({
+  title,
+  description,
+  githubUrl,
+  youtubeUrls,
+  downloadUrls,
+  techStack,
+  nugetUrl,
+  screenShots
+}) => {
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  const handleOpen = (image: string) => {
+    setSelectedImage(image);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
+
   return (
     <DevToyItemContainer>
       <Typography variant="h5" gutterBottom>
@@ -98,6 +141,18 @@ const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, 
           {nugetUrl}
         </IconLink>
       )}
+      {screenShots && screenShots.length > 0 && (
+        <ScreenshotContainer>
+          {screenShots.map((image, index) => (
+            <Screenshot
+              key={index}
+              src={process.env.PUBLIC_URL + image}
+              alt={`Screenshot ${index + 1}`}
+              onClick={() => handleOpen(process.env.PUBLIC_URL + image)}
+            />
+          ))}
+        </ScreenshotContainer>
+      )}
       {techStack.length > 0 && (
         <Box mt={2} display="flex" alignItems="center">
           <Typography variant="subtitle1" gutterBottom style={{ marginRight: '8px' }}>
@@ -110,6 +165,11 @@ const DevToyItem: React.FC<DevToyItemProps> = ({ title, description, githubUrl, 
           </Box>
         </Box>
       )}
+      <Modal open={open} onClose={handleClose}>
+        <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+          <ModalImage src={selectedImage} alt="Selected Screenshot" />
+        </Box>
+      </Modal>
     </DevToyItemContainer>
   );
 };
