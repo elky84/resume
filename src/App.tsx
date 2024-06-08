@@ -9,6 +9,7 @@ import Education from './components/Education';
 import DevToy from './components/DevToy';
 import Career from './components/Career';
 import MajorExperience from './components/MajorExperience';
+import SideBar from './components/SideBar';
 
 const theme = createTheme({
   palette: {
@@ -57,14 +58,15 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
+        <SideBar />
         <div ref={componentRef}>
-          <Profile />
-          <Introduction />
-          <Career />
-          <MajorExperience />
-          <Strengths />
-          <DevToy />
-          <Education />
+          <div id="profile"><Profile /></div>
+          <div id="introduction"><Introduction /></div>
+          <div id="career"><Career /></div>
+          <div id="majorExperience"><MajorExperience /></div>
+          <div id="strengths"><Strengths /></div>
+          <div id="devToy"><DevToy /></div>
+          <div id="education"><Education /></div>
         </div>
         <Button onClick={handlePrint} variant="contained" color="primary">
           Print to PDF
