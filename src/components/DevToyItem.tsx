@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Typography, Box, Link, Chip, Modal } from '@mui/material';
+import { Typography, Box, Link, Chip, Modal, Backdrop } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import nugetIcon from '../icon/nuget.png';
 
@@ -46,11 +45,42 @@ const Screenshot = styled('img')`
   }
 `;
 
+const ModalContent = styled(Box)`
+  width: 90%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 10;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const ModalMediaWrapper = styled(Box)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  z-index: 1001; /* 모달 위로 배치하여 iframe 이벤트를 가리도록 함 */
+`;
+
 const ModalImage = styled('img')`
-  width: 80%;
-  height: auto;
-  margin: auto;
-  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
+const YouTubeThumbnail = styled('img')`
+  height: 100px;
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 interface DevToyItemProps {
@@ -75,14 +105,33 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
   screenShots
 }) => {
   const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string }>({ type: 'image', src: '' });
 
-  const handleOpen = (image: string) => {
-    setSelectedImage(image);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleModalClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (event.target === event.currentTarget) {
+      handleClose();
+    }
+  };
+
+  const handleThumbnailClick = (url: string) => {
+    setSelectedMedia({ type: 'video', src: url });
     setOpen(true);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleScreenshotClick = (url: string) => {
+    setSelectedMedia({ type: 'image', src: url });
+    setOpen(true);
+  };
+
+  const extractVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|youtube.com\/user\/\w#p\/\w\/\w\/|youtu.be\/\?t=|watch\?t=|&t=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
 
   return (
     <DevToyItemContainer>
@@ -106,72 +155,98 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
         </IconLink>
       )}
       {youtubeUrls && youtubeUrls.length > 0 && (
-        <Box mt={1}>
-          {youtubeUrls.map((item, index) => (
-            <IconLink key={index} href={item.url} target="_blank" rel="noopener noreferrer">
-              <YouTubeIcon style={{ marginRight: '5px' }} />
-              {item.name}
-            </IconLink>
-          ))}
-        </Box>
-      )}
-      {downloadUrls && downloadUrls.length > 0 && (
-        <Box mt={1}>
-          {downloadUrls.map((item, index) => (
-            <React.Fragment key={index}>
-              {item.windows && (
-                <IconLink href={item.windows} target="_blank" rel="noopener noreferrer">
-                  <GetAppIcon style={{ marginRight: '5px' }} />
-                  windows
-                </IconLink>
-              )}
-              {item.android && (
-                <IconLink href={item.android} target="_blank" rel="noopener noreferrer">
-                  <GetAppIcon style={{ marginRight: '5px' }} />
-                  android
-                </IconLink>
-              )}
-            </React.Fragment>
-          ))}
-        </Box>
-      )}
-      {nugetUrl && (
-        <IconLink href={nugetUrl} target="_blank" rel="noopener noreferrer">
-          <NuGetIcon src={nugetIcon} alt="NuGet Icon" />
-          {nugetUrl}
-        </IconLink>
-      )}
-      {screenShots && screenShots.length > 0 && (
         <ScreenshotContainer>
-          {screenShots.map((image, index) => (
-            <Screenshot
+          {youtubeUrls.map((item, index) => (
+            <YouTubeThumbnail
               key={index}
-              src={process.env.PUBLIC_URL + image}
-              alt={`Screenshot ${index + 1}`}
-              onClick={() => handleOpen(process.env.PUBLIC_URL + image)}
+              src={`https://img.youtube.com/vi/${extractVideoId(item.url)}/0.jpg`}
+              alt={item.name}
+              onClick={() => handleThumbnailClick(item.url)}
             />
           ))}
         </ScreenshotContainer>
       )}
-      {techStack.length > 0 && (
-        <Box mt={2} display="flex" alignItems="center">
-          <Typography variant="subtitle1" gutterBottom style={{ marginRight: '8px' }}>
-            기술 스택:
-          </Typography>
-          <Box display="flex" flexWrap="wrap" gap={1}>
-            {techStack.map((tech, index) => (
-              <Chip key={index} label={tech} />
-            ))}
-          </Box>
+      {downloadUrls && downloadUrls.length > 0 && (
+        <Box mt={1}>
+          {downloadUrls.map((item, index) => (
+            <React.Fragment key
+            ={index}>
+            {item.windows && (
+              <IconLink href={item.windows} target="_blank" rel="noopener noreferrer">
+                <GetAppIcon style={{ marginRight: '5px' }} />
+                windows
+              </IconLink>
+            )}
+            {item.android && (
+              <IconLink href={item.android} target="_blank" rel="noopener noreferrer">
+                <GetAppIcon style={{ marginRight: '5px' }} />
+                android
+              </IconLink>
+            )}
+          </React.Fragment>
+        ))}
+      </Box>
+    )}
+    {nugetUrl && (
+      <IconLink href={nugetUrl} target="_blank" rel="noopener noreferrer">
+        <NuGetIcon src={nugetIcon} alt="NuGet Icon" />
+        {nugetUrl}
+      </IconLink>
+    )}
+    {screenShots && screenShots.length > 0 && (
+      <ScreenshotContainer>
+        {screenShots.map((image, index) => (
+          <Screenshot
+            key={index}
+            src={process.env.PUBLIC_URL + image}
+            alt={`Screenshot ${index + 1}`}
+            onClick={() => handleScreenshotClick(process.env.PUBLIC_URL + image)}
+          />
+        ))}
+      </ScreenshotContainer>
+    )}
+    {techStack.length > 0 && (
+      <Box mt={2} display="flex" alignItems="center">
+        <Typography variant="subtitle1" gutterBottom style={{ marginRight: '8px' }}>
+          기술 스택:
+        </Typography>
+        <Box display="flex" flexWrap="wrap" gap={1}>
+          {techStack.map((tech, index) => (
+            <Chip key={index} label={tech} />
+          ))}
         </Box>
-      )}
-      <Modal open={open} onClose={handleClose}>
-        <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
-          <ModalImage src={selectedImage} alt="Selected Screenshot" />
-        </Box>
-      </Modal>
-    </DevToyItemContainer>
-  );
+      </Box>
+    )}
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+      BackdropProps={{
+        onClick: () => handleClose(), // 배경 클릭 시 모달이 닫히도록 함
+        sx: { zIndex: 1000 },
+      }}
+    >
+      <ModalMediaWrapper onClick={handleModalClick}> {/* 모달 클릭 시 닫히도록 함 */}
+        <ModalContent>
+          {selectedMedia.type === 'image' ? (
+            <ModalImage src={selectedMedia.src} alt="Selected Screenshot" />
+          ) : (
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${extractVideoId(selectedMedia.src)}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="YouTube video player"
+              style={{ zIndex: 999 }}
+            ></iframe>
+          )}
+        </ModalContent>
+      </ModalMediaWrapper>
+    </Modal>
+  </DevToyItemContainer>
+);
 };
 
 export default DevToyItem;
