@@ -166,31 +166,7 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
           </React.Fragment>
         ))}
       </DescriptionText>
-      {githubUrl && (
-        <IconLink href={githubUrl} target="_blank" rel="noopener noreferrer">
-          <GitHubIcon style={{ marginRight: '5px' }} />
-          {githubUrl}
-        </IconLink>
-      )}
-      {youtubeUrls && youtubeUrls.length > 0 && (
-        <EmbedMediaContainer>
-          {youtubeUrls.map((item, index) => (
-            <YouTubeThumbnailContainer key={index}>
-              <YouTubeThumbnail
-                src={`https://img.youtube.com/vi/${extractVideoId(item.url)}/0.jpg`}
-                alt={item.name}
-                onClick={() => handleThumbnailClick(item.url)}
-              />
-              <ThumbnailTextContainer>
-                <YouTubeIcon color="error" fontSize="small" />
-                <Link href={item.url} target="_blank" rel="noopener noreferrer">
-                  <ThumbnailText>{item.name}</ThumbnailText>
-                </Link>
-              </ThumbnailTextContainer>
-              </YouTubeThumbnailContainer>
-          ))}
-        </EmbedMediaContainer>
-      )}
+
       {downloadUrls && downloadUrls.length > 0 && (
         <Box mt={1}>
           {downloadUrls.map((item, index) => (
@@ -210,68 +186,94 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
             )}
           </React.Fragment>
         ))}
-      </Box>
-    )}
-    {nugetUrl && (
-      <IconLink href={nugetUrl} target="_blank" rel="noopener noreferrer">
-        <NuGetIcon src={nugetIcon} alt="NuGet Icon" />
-        {nugetUrl}
-      </IconLink>
-    )}
-    {screenShots && screenShots.length > 0 && (
-      <EmbedMediaContainer>
-        {screenShots.map((image, index) => (
-          <Screenshot
-            key={index}
-            src={process.env.PUBLIC_URL + image}
-            alt={`Screenshot ${index + 1}`}
-            onClick={() => handleScreenshotClick(process.env.PUBLIC_URL + image)}
-          />
-        ))}
-      </EmbedMediaContainer>
-    )}
-    {techStack.length > 0 && (
-      <Box mt={2} display="flex" alignItems="center">
-        <Typography variant="subtitle1" gutterBottom style={{ marginRight: '8px' }}>
-          기술 스택:
-        </Typography>
-        <Box display="flex" flexWrap="wrap" gap={1}>
-          {techStack.map((tech, index) => (
-            <Chip key={index} label={tech} />
-          ))}
         </Box>
-      </Box>
-    )}
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-title"
-      aria-describedby="modal-description"
-      BackdropProps={{
-        onClick: () => handleClose(), // 배경 클릭 시 모달이 닫히도록 함
-        sx: { zIndex: 1000 },
-      }}
-    >
-      <ModalMediaWrapper onClick={handleModalClick}> {/* 모달 클릭 시 닫히도록 함 */}
-        <ModalContent>
-          {selectedMedia.type === 'image' ? (
-            <ModalImage src={selectedMedia.src} alt="Selected Screenshot" />
-          ) : (
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${extractVideoId(selectedMedia.src)}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="YouTube video player"
-              style={{ zIndex: 999 }}
-            ></iframe>
-          )}
-        </ModalContent>
-      </ModalMediaWrapper>
-    </Modal>
-  </DevToyItemContainer>
-);
+      )}
+      {githubUrl && (
+        <IconLink href={githubUrl} target="_blank" rel="noopener noreferrer">
+          <GitHubIcon style={{ marginRight: '5px' }} />
+          {githubUrl}
+        </IconLink>
+      )}
+
+      {youtubeUrls && youtubeUrls.length > 0 && (
+        <EmbedMediaContainer>
+          {youtubeUrls.map((item, index) => (
+            <YouTubeThumbnailContainer key={index}>
+              <YouTubeThumbnail
+                src={`https://img.youtube.com/vi/${extractVideoId(item.url)}/0.jpg`}
+                alt={item.name}
+                onClick={() => handleThumbnailClick(item.url)}
+              />
+              <ThumbnailTextContainer>
+                <YouTubeIcon color="error" fontSize="small" />
+                <Link href={item.url} target="_blank" rel="noopener noreferrer">
+                  <ThumbnailText>{item.name}</ThumbnailText>
+                </Link>
+              </ThumbnailTextContainer>
+              </YouTubeThumbnailContainer>
+          ))}
+        </EmbedMediaContainer>
+      )}
+      {nugetUrl && (
+        <IconLink href={nugetUrl} target="_blank" rel="noopener noreferrer">
+          <NuGetIcon src={nugetIcon} alt="NuGet Icon" />
+          {nugetUrl}
+        </IconLink>
+      )}
+      {screenShots && screenShots.length > 0 && (
+        <EmbedMediaContainer>
+          {screenShots.map((image, index) => (
+            <Screenshot
+              key={index}
+              src={process.env.PUBLIC_URL + image}
+              alt={`Screenshot ${index + 1}`}
+              onClick={() => handleScreenshotClick(process.env.PUBLIC_URL + image)}
+            />
+          ))}
+        </EmbedMediaContainer>
+      )}
+      {techStack.length > 0 && (
+        <Box mt={2} display="flex" alignItems="center">
+          <Typography variant="subtitle1" gutterBottom style={{ marginRight: '8px' }}>
+            기술 스택:
+          </Typography>
+          <Box display="flex" flexWrap="wrap" gap={1}>
+            {techStack.map((tech, index) => (
+              <Chip key={index} label={tech} />
+            ))}
+          </Box>
+        </Box>
+      )}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+        BackdropProps={{
+          onClick: () => handleClose(), // 배경 클릭 시 모달이 닫히도록 함
+          sx: { zIndex: 1000 },
+        }}
+      >
+        <ModalMediaWrapper onClick={handleModalClick}> {/* 모달 클릭 시 닫히도록 함 */}
+          <ModalContent>
+            {selectedMedia.type === 'image' ? (
+              <ModalImage src={selectedMedia.src} alt="Selected Screenshot" />
+            ) : (
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${extractVideoId(selectedMedia.src)}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="YouTube video player"
+                style={{ zIndex: 999 }}
+              ></iframe>
+            )}
+          </ModalContent>
+        </ModalMediaWrapper>
+      </Modal>
+    </DevToyItemContainer>
+  );
 };
 
 export default DevToyItem;
