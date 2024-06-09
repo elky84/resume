@@ -46,6 +46,15 @@
   margin: 20px 0;
 }
 
+/* 모바일 화면에서 내용 영역 조정 */
+@media (max-width: 600px) {
+  .introduction, .experience, .projects, .strengths, .education {
+    margin: 20px 10px; /* 좌우 여백 추가 */
+    font-size: 16px; /* 폰트 크기 증가 */
+  }
+}
+
+
 h2 {
   border-bottom: 2px solid #000;
   padding-bottom: 5px;

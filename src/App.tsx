@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Button, Container, CssBaseline, Grid } from '@mui/material'; // Grid 추가
+import { Button, Container, CssBaseline, Grid } from '@mui/material';
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
 import Strengths from './components/Strengths';
@@ -14,15 +14,15 @@ import SideBar from './components/SideBar';
 const theme = createTheme({
   palette: {
     background: {
-      default: '#f7f7f7', // 흐릿한 회색
+      default: '#f7f7f7',
     },
     text: {
-      primary: '#333', // 진한 회색
-      secondary: '#555', // 중간 회색
+      primary: '#333',
+      secondary: '#555',
     },
   },
   typography: {
-    fontFamily: 'Press Start 2P, Arial, sans-serif', // Press Start 2P 폰트 추가
+    fontFamily: 'Press Start 2P, Arial, sans-serif',
   },
 });
 
@@ -58,12 +58,11 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
-        {/* Grid 컴포넌트를 사용하여 Sidebar를 옆에 붙임 */}
-        <Grid container>
-          <Grid item xs={2} md={1}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={2}>
             <SideBar />
           </Grid>
-          <Grid item xs={10} md={11}>
+          <Grid item xs={12} md={10}>
             <div ref={componentRef}>
               <div id="profile"><Profile /></div>
               <div id="introduction"><Introduction /></div>
