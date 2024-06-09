@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Typography, Box, Link, Chip, Modal, Backdrop } from '@mui/material';
+import { Typography, Box, Link, Chip, Modal } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import nugetIcon from '../icon/nuget.png';
