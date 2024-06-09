@@ -14,6 +14,9 @@ const Sidebar: React.FC = () => {
         boxShadow: '0 0 10px rgba(0,0,0,0.1)',
         zIndex: 1000,
         width: '120px',
+        '@media (max-width: 600px)': {
+          width: '60px',
+        },
       }}
     >
       <Button href="#profile" variant="contained" color="primary" fullWidth sx={{ mb: 1, fontSize: '10px' }}>

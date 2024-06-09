@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Button, Container, CssBaseline } from '@mui/material';
+import { Button, Container, CssBaseline, Grid } from '@mui/material'; // Grid 추가
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
 import Strengths from './components/Strengths';
@@ -58,19 +58,26 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
-        <SideBar />
-        <div ref={componentRef}>
-          <div id="profile"><Profile /></div>
-          <div id="introduction"><Introduction /></div>
-          <div id="career"><Career /></div>
-          <div id="majorExperience"><MajorExperience /></div>
-          <div id="strengths"><Strengths /></div>
-          <div id="devToy"><DevToy /></div>
-          <div id="education"><Education /></div>
-        </div>
-        <Button onClick={handlePrint} variant="contained" color="primary">
-          Print to PDF
-        </Button>
+        {/* Grid 컴포넌트를 사용하여 Sidebar를 옆에 붙임 */}
+        <Grid container>
+          <Grid item xs={2} md={1}>
+            <SideBar />
+          </Grid>
+          <Grid item xs={10} md={11}>
+            <div ref={componentRef}>
+              <div id="profile"><Profile /></div>
+              <div id="introduction"><Introduction /></div>
+              <div id="career"><Career /></div>
+              <div id="majorExperience"><MajorExperience /></div>
+              <div id="strengths"><Strengths /></div>
+              <div id="devToy"><DevToy /></div>
+              <div id="education"><Education /></div>
+            </div>
+            <Button onClick={handlePrint} variant="contained" color="primary">
+              Print to PDF
+            </Button>
+          </Grid>
+        </Grid>
       </Container>
     </ThemeProvider>
   );
