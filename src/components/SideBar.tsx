@@ -65,11 +65,12 @@ const Sidebar: React.FC = () => {
           </Button>
           <Button onClick={() => scrollToSection("education")} variant="contained" color="primary" fullWidth sx={{ fontSize: '10px' }}>
             교육
-          </Button>             </>
+          </Button>             
+        </>
       )}
       {isMobile() && (
-        <Button onClick={toggleSidebar} variant="contained" color={expanded ? "secondary" : "primary"} fullWidth sx={{ fontSize: '10px' }}>
-          {expanded ? '접기' : '확장'}
+        <Button onClick={toggleSidebar} variant="contained" color={expanded ? "secondary" : "primary"} fullWidth sx={{ fontSize: '10px', marginTop: '5px' }}>
+          {expanded ? '접기' : '바로가기'}
         </Button>
       )}
     </Box>
