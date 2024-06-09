@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Typography, Box, Link, Chip, Modal } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GetAppIcon from '@mui/icons-material/GetApp';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import nugetIcon from '../icon/nuget.png';
 
 const DevToyItemContainer = styled(Box)`
@@ -29,7 +30,7 @@ const NuGetIcon = styled('img')`
   margin-right: 5px;
 `;
 
-const ScreenshotContainer = styled(Box)`
+const EmbedMediaContainer = styled(Box)`
   display: flex;
   overflow-x: auto;
   gap: 10px;
@@ -74,13 +75,30 @@ const ModalImage = styled('img')`
   object-fit: contain;
 `;
 
+const YouTubeThumbnailContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const YouTubeThumbnail = styled('img')`
-  height: 100px;
+  height: 140px;
   cursor: pointer;
   border-radius: 4px;
   &:hover {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   }
+`;
+
+const ThumbnailTextContainer = styled(Box)`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+const ThumbnailText = styled(Typography)`
+  text-align: center;
+  font-size: 0.7rem !important;
 `;
 
 interface DevToyItemProps {
@@ -155,16 +173,23 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
         </IconLink>
       )}
       {youtubeUrls && youtubeUrls.length > 0 && (
-        <ScreenshotContainer>
+        <EmbedMediaContainer>
           {youtubeUrls.map((item, index) => (
-            <YouTubeThumbnail
-              key={index}
-              src={`https://img.youtube.com/vi/${extractVideoId(item.url)}/0.jpg`}
-              alt={item.name}
-              onClick={() => handleThumbnailClick(item.url)}
-            />
+            <YouTubeThumbnailContainer key={index}>
+              <YouTubeThumbnail
+                src={`https://img.youtube.com/vi/${extractVideoId(item.url)}/0.jpg`}
+                alt={item.name}
+                onClick={() => handleThumbnailClick(item.url)}
+              />
+              <ThumbnailTextContainer>
+                <YouTubeIcon color="error" fontSize="small" />
+                <Link href={item.url} target="_blank" rel="noopener noreferrer">
+                  <ThumbnailText>{item.name}</ThumbnailText>
+                </Link>
+              </ThumbnailTextContainer>
+              </YouTubeThumbnailContainer>
           ))}
-        </ScreenshotContainer>
+        </EmbedMediaContainer>
       )}
       {downloadUrls && downloadUrls.length > 0 && (
         <Box mt={1}>
@@ -194,7 +219,7 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
       </IconLink>
     )}
     {screenShots && screenShots.length > 0 && (
-      <ScreenshotContainer>
+      <EmbedMediaContainer>
         {screenShots.map((image, index) => (
           <Screenshot
             key={index}
@@ -203,7 +228,7 @@ const DevToyItem: React.FC<DevToyItemProps> = ({
             onClick={() => handleScreenshotClick(process.env.PUBLIC_URL + image)}
           />
         ))}
-      </ScreenshotContainer>
+      </EmbedMediaContainer>
     )}
     {techStack.length > 0 && (
       <Box mt={2} display="flex" alignItems="center">
