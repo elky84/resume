@@ -50,13 +50,6 @@ const devToysData = [
     techStack: ["ASP.NET CORE 6", "C#", "MongoDB", ".NET 6", '']
   },
   {
-    title: "NineWars (2D Auto Battler)",
-    description: "DirectX 9.0, C++로 구현한 습작 2D Auto Battler.\nFootball Manager 시리즈의 영향을 받아, 전략 설정, 유닛 배치를 기반으로 동작하는 게임",
-    githubUrl: "https://github.com/elky84/NineWars",
-    techStack: ["Direct-X", "C++"],
-    youtubeUrls: [{name: "Youtube", url: "https://www.youtube.com/watch?v=cXwk5lkvm_Y"}]
-  },
-  {
     title: "ExcelToDotnet",
     description: "Excel 정의 데이터를 C# class, enum, json 으로 뽑아서 게임 혹은 각종 앱에 편하게 쓸 수 있게 해주는 패키지",
     githubUrl: "https://github.com/elky84/ExcelToDotnet/",
@@ -97,6 +90,23 @@ const devToysData = [
     githubUrl: "https://github.com/elky84/EnumExtend/",
     techStack: ["C#", ".NET 8"],
     nugetUrl: "https://www.nuget.org/packages/EnumExtend"
+  },
+  {
+    title: "SRPG",
+    description: "2D SRPG 게임",
+    youtubeUrls: [{ name: "플레이 영상", url: "https://www.youtube.com/watch?v=ojFI4uvDnhA" }
+    ],
+    techStack: ["C#", "Unity3D", ".NET 6"],
+    downloadUrls: [{windows: "https://drive.google.com/file/d/1_-8mTDF4bBEhYmt2-0e6ReAMbZtMGNA6/view?usp=sharing"}],
+    screenShots: ["/screenshots/SRPG_01.jpeg", "/screenshots/SRPG_02.jpeg", "/screenshots/SRPG_03.jpeg", 
+      "/screenshots/SRPG_04.jpeg", "/screenshots/SRPG_05.jpeg", "/screenshots/SRPG_06.jpeg"]
+  },
+  {
+    title: "NineWars (2D Auto Battler)",
+    description: "DirectX 9.0, C++로 구현한 습작 2D Auto Battler.\nFootball Manager 시리즈의 영향을 받아, 전략 설정, 유닛 배치를 기반으로 동작하는 게임",
+    githubUrl: "https://github.com/elky84/NineWars",
+    techStack: ["Direct-X", "C++"],
+    youtubeUrls: [{name: "플레이 영상", url: "https://www.youtube.com/watch?v=cXwk5lkvm_Y"}]
   }
 ];
 
