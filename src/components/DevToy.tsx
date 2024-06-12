@@ -12,7 +12,9 @@ const devToysData = [
     title: "GM - 2D MMORPG",
     description: "Unity 3D, C# DotNetty 로 구현한 습작 2D MMORPG",
     youtubeUrls: [{ name: "보스전, 던전, 등가 교환 주문서", url: "https://www.youtube.com/watch?v=Ot17tzF75MM" },
-      { name: "변신 주문서, 몬스터 소환 주문서", url: "https://www.youtube.com/watch?v=BVraOJ3WA5s" }
+      { name: "변신 주문서, 몬스터 소환 주문서", url: "https://www.youtube.com/watch?v=BVraOJ3WA5s" },
+      { name: "스킬 및 전투", url: "https://www.youtube.com/watch?v=ObgokCLej_E" },
+      { name: "투명 망토", url: "https://www.youtube.com/watch?v=jlFLemggveQ" }
     ],
     techStack: ["C#", "Unity3D", "DotNetty", "MongoDB", ".NET 6"],
     downloadUrls: [{windows: "https://drive.google.com/file/d/14gzmzYJ13sKcmOlVEuwDe238V0AN18wu/view?usp=drive_link"}],
