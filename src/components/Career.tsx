@@ -19,11 +19,11 @@ const Career: React.FC = () => {
       period: '2023.12 - 2024.04',
       keyIssues: ['딥러닝을 게임에 활용하는 시도를 하는 연구 조직'],
       techStack: ['ASP.NET CORE', 'C#', 'MongoDB', 'RabbitMQ', 'Docker', 'Kubernetis', 'Unity3D'],
-      description: '기존 프로젝트 개선 작업을 위해, 단기 합류',
+      description: '기존 프로젝트 단기 합류',
       projects: [
         {
           name: '딥러닝/게임 | 웹 서비스/유니티',
-          description: '딥러닝을 게임에 활용하는 시도를 하는 연구 조직',
+          description: '딥러닝을 게임에 활용하는 시도를 하는 프로토타이핑 조직',
         },
       ],
     },
@@ -37,13 +37,11 @@ const Career: React.FC = () => {
         {
           name: 'PEEP',
           description: 'PEEP의 백엔드 기능 추가 - 화상 채팅, 방/워크스페이스 관리, 인증/인가',
-          siteUrl: 'https://peep.lol',
         },
         {
           name: 'qeeq',
           techStack: ['MySQL', 'Hibernate'],
           description: 'qeeq의 백엔드 개발 - 모바일 게임 소셜 앱, 게임 관련 투표/퀴즈 서비스',
-          siteUrl: 'https://qeeq.op.gg/ko',
         },
       ],
     },
@@ -55,11 +53,10 @@ const Career: React.FC = () => {
           {
             name: '딥러닝/게임 | 웹 서비스/유니티',
             techStack: ['ASP.NET CORE', 'C#', 'MongoDB', 'RabbitMQ', 'Docker', 'Kubernetis', 'Unity3D'],
-            keyIssues: ['Python (Pytorch), Unity3D MLAgents 기반의 딥러닝 라이브러리 활용\n주력 AI Engineer는 다른 분이 여럿 계신 상황이며, 이해도와 간단한 활용 정도만 가능',
-                'C# ASP.NET CORE를 이용한 서버를 통해, 활용되는 서버에서 쉽게 가져갈 수 있게 2차 가공 및 자원 전달 기능 작업',
-                'Ocelot (Spring Cloud Gateway, Netflix Zuul, Armeria와 같은 API Gateway용 패키지)로 MSA로 서비스를 구성'
+            keyIssues: ['C# ASP.NET CORE, DotNetty (Netty의 C#버전)를 이용한 게임 서버 구현',
+                'C# Unity를 이용한 게임 프로토 타이핑'
             ],
-            description: '딥러닝을 게임에 활용하는 시도를 하는 연구 조직',
+            description: '딥러닝을 게임에 활용하는 시도를 하는 프로토타이핑 조직',
           },
           {
             name: '테라 PC | MMORPG',
