@@ -16,7 +16,7 @@ const devToysData = [
       { name: "스킬 및 전투", url: "https://www.youtube.com/watch?v=ObgokCLej_E" },
       { name: "투명 망토", url: "https://www.youtube.com/watch?v=jlFLemggveQ" }
     ],
-    techStack: ["C#", "Unity3D", "DotNetty", "MongoDB", ".NET 6"],
+    techStack: ["C#", "Unity3D", "DotNetty", "MongoDB", ".NET 9"],
     downloadUrls: [{windows: "https://drive.google.com/file/d/14gzmzYJ13sKcmOlVEuwDe238V0AN18wu/view?usp=drive_link"}],
     screenShots: ["/screenshots/gm_01.jpeg", "/screenshots/gm_02.jpeg", "/screenshots/gm_03.jpeg", 
       "/screenshots/gm_04.jpeg", "/screenshots/gm_05.jpeg", "/screenshots/gm_06.jpeg"]
@@ -29,27 +29,27 @@ const devToysData = [
   },
   {
     title: "web-crawler",
-    description: "Abot2, ASP.NET 6로 구현한 웹 (인벤, 루리웹, 오늘의 유머, FM코리아 등) 크롤러 & 알리미.",
+    description: "Abot2, ASP.NET 9로 구현한 웹 (인벤, 루리웹, 오늘의 유머, FM코리아 등) 크롤러 & 알리미.",
     githubUrl: "https://github.com/elky84/web-crawler",
-    techStack: ["ASP.NET CORE 6", "Abot2", "C#", "MongoDB", ".NET 6"]
+    techStack: ["ASP.NET CORE 9", "Abot2", "C#", "MongoDB", ".NET 9"]
   },
   {
     title: "stock-crawler",
-    description: "ASP.NET 6로 구현한 네이버 주식 크롤러, 분석기\n다양한 알고리즘으로 종목 선별 기능.\n조건에 따른 자동 매수/매도를 통한 모의 투자 기능.",
+    description: "ASP.NET 9로 구현한 네이버 주식 크롤러, 분석기\n다양한 알고리즘으로 종목 선별 기능.\n조건에 따른 자동 매수/매도를 통한 모의 투자 기능.",
     githubUrl: "https://github.com/elky84/stock-crawler",
-    techStack: ["ASP.NET CORE 6", "C#", "MongoDB", ".NET 6"]
+    techStack: ["ASP.NET CORE 9", "C#", "MongoDB", ".NET 9"]
   },
   {
     title: "lol-crawler",
-    description: "ASP.NET 6로 구현한 LOL 게임 시작/결과 추적기\n최초 버전은 Java 8, Spring Boot로 구현했었으나, 디버깅, 배포용이성으로 C# 포팅",
+    description: "ASP.NET 9로 구현한 LOL 게임 시작/결과 추적기\n최초 버전은 Java 8, Spring Boot로 구현했었으나, 디버깅, 배포용이성으로 C# 포팅",
     githubUrl: "https://github.com/elky84/lol-crawler",
-    techStack: ["ASP.NET CORE 6", "C#", "MongoDB", ".NET 6"]
+    techStack: ["ASP.NET CORE 9", "C#", "MongoDB", ".NET 9"]
   },
   {
     title: "WebCommunity",
-    description: "ASP.NET 6, MongoDb, Vue.js로 구현한 웹 커뮤니티\n동적 게시판, 유튜브 등의 임베딩 가능한 에디터, 댓글, 대댓글 기능등을 구현",
+    description: "ASP.NET 9, MongoDb, Vue.js로 구현한 웹 커뮤니티\n동적 게시판, 유튜브 등의 임베딩 가능한 에디터, 댓글, 대댓글 기능등을 구현",
     githubUrl: "https://github.com/elky84/WebCommunity",
-    techStack: ["ASP.NET CORE 6", "C#", "MongoDB", ".NET 6", '']
+    techStack: ["ASP.NET CORE 9", "C#", "MongoDB", ".NET 9", '']
   },
   {
     title: "ExcelToDotnet",
@@ -98,7 +98,7 @@ const devToysData = [
     description: "2D SRPG 게임",
     youtubeUrls: [{ name: "플레이 영상", url: "https://www.youtube.com/watch?v=ojFI4uvDnhA" }
     ],
-    techStack: ["C#", "Unity3D", ".NET 6"],
+    techStack: ["C#", "Unity3D", ".NET 9"],
     downloadUrls: [{windows: "https://drive.google.com/file/d/1_-8mTDF4bBEhYmt2-0e6ReAMbZtMGNA6/view?usp=sharing"}],
     screenShots: ["/screenshots/SRPG_01.jpeg", "/screenshots/SRPG_02.jpeg", "/screenshots/SRPG_03.jpeg", 
       "/screenshots/SRPG_04.jpeg", "/screenshots/SRPG_05.jpeg", "/screenshots/SRPG_06.jpeg"]
